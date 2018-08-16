@@ -30,13 +30,13 @@ const dynamodb = {
         });
         console.log('Dynamodb Local Started, Visit: http://localhost:' + (options.port || config.start.port) + '/shell');
     },
-    stop: function(port) {
+    stop: function(port: number) {
         if (dbInstances[port]) {
             dbInstances[port].process.kill('SIGKILL');
             delete dbInstances[port];
         }
     },
-    restart: function(port) {
+    restart: function(port: number) {
         const options = dbInstances[port].options;
         this.stop(port);
         this.start(options);
