@@ -5,7 +5,7 @@ import {Starter} from './dynamodb/starter';
 import {Utils} from './dynamodb/utils';
 import config from './dynamodb/config.json';
 
-export class DynamodbManager {
+export class DynamodbLocalManager {
 
     private dbInstances:any;
     
