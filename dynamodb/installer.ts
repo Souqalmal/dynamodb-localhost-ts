@@ -1,14 +1,14 @@
 'use strict';
 
 import * as tar from 'tar';
-import * as zlib from 'zlib';
+import {zlib} from 'zlib';
 import * as path from 'path';
 import * as http from 'http';
 import * as fs from 'fs';
 import * as ProgressBar from 'progress';
-import * as utils from './utils';
+import {Utils} from './utils';
 
-var download = function (downloadUrl: string, installPath: string, callback) {
+var download = function (downloadUrl: string, installPath: string, callback: any) {
     console.log("Started downloading Dynamodb-local. Process may take few minutes.");
     http.get(downloadUrl, function (response) {
         let len = parseInt(response.headers['content-length'] || '0', 10);
@@ -43,7 +43,8 @@ var download = function (downloadUrl: string, installPath: string, callback) {
         });
 };
 
-var install = function (config, callback) {
+var install = function (config:any, callback:any) {
+    const utils:Utils = new Utils();
     var install_path = utils.absPath(config.setup.install_path),
         jar = config.setup.jar,
         download_url = config.setup.download_url;

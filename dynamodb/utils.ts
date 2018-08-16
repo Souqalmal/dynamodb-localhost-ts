@@ -3,28 +3,24 @@
 import * as path from 'path';
 import * as fs from 'fs-extra';
 
+export class Utils {
 
-var absPath = function (p: string) {
-  if (path.isAbsolute(p)) {
-    return p;
-  } else {
-    return path.join(path.dirname(__filename), p);
-  }
-};
+    public absPath (p: string):string {
+	if (path.isAbsolute(p)) {
+	    return p;
+	} else {
+	    return path.join(path.dirname(__filename), p);
+	}
+    };
 
-var removeDir = function (relPath: string, callback) {
-    var path = absPath(relPath);
-    fs.removeSync(path, callback);
-};
+    public removeDir(relPath: string, callback):void {
+	var path = absPath(relPath);
+	fs.removeSync(path, callback);
+    };
 
-var createDir = function (relPath: string) {
-    if (!fs.existsSync(absPath(relPath))) {
-        fs.mkdirSync(absPath(relPath));
-    }
-};
-
-export = {
-    absPath: absPath,
-    removeDir: removeDir,
-    createDir: createDir
-};
+    public createDir(relPath: string):void {
+	if (!fs.existsSync(absPath(relPath))) {
+            fs.mkdirSync(absPath(relPath));
+	}
+    };
+}
