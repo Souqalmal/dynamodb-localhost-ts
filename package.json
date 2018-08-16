@@ -1,6 +1,6 @@
 {
     "name": "dynamodb-localhost-ts",
-    "version": "0.0.6",
+    "version": "0.0.1",
     "engines": {
         "node": ">=4.0"
     },
