@@ -1,12 +1,12 @@
 'use strict';
 
 import * as tar from 'tar';
-import {zlib} from 'zlib';
+import {Unzip} from 'zlib';
 import * as path from 'path';
 import * as http from 'http';
 import * as fs from 'fs';
 import * as ProgressBar from 'progress';
-
+import {Utils} from './utils';
 
 export class Installer {
     public download(downloadUrl: string, installPath: string, callback: any):void {
@@ -25,7 +25,7 @@ export class Installer {
             }
 	    
             response
-		.pipe(zlib.Unzip())
+		.pipe(Unzip())
 		.pipe(tar.Extract({
                     path: installPath
 		}))
