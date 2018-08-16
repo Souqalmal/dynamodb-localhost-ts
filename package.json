@@ -1,5 +1,5 @@
 {
-    "name": "dynamodb-localhost-ts",
+    "name": "dynamodb-local-manager",
     "version": "0.0.1",
     "engines": {
         "node": ">=4.0"
@@ -9,7 +9,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Souqalmal/dynamodb-localhost-ts"
+        "url": "https://github.com/Souqalmal/dynamodb-localhost-manager"
     },
     "keywords": [
         "aws",

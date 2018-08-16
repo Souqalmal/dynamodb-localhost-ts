@@ -1,4 +1,4 @@
-dynamodb-localhost-ts
+dynamodb-localhost-manager
 =================================
 
 > Fork of https://github.com/99xt/dynamodb-localhost in TypeScript
@@ -18,14 +18,14 @@ This library works as a wrapper for AWS DynamoDB Local, intended for use in loca
 
 ## Installation
 
-`npm install --save dynamodb-localhost-ts`
+`npm install --save dynamodb-localhost-manager`
 
 ## Usage
 
 Usage example
 
 ```
-import * as dynamodbLocal from 'dynamodb-localhost-ts';
+import * as dynamodbLocal from 'dynamodb-localhost-manager';
 dynamodbLocal.install(); /* This is one time operation. Safe to execute multiple times which installs DynamoDB once. All the other methods depends on this. */
 dynamodbLocal.start({port: 8000});
 ```
@@ -57,7 +57,7 @@ All options for DynamoDB start:
 
 * [Dynamodb local documentation](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html)
 * [Contact Us](mailto:tech@souqalmal.com)
-* [NPM Registry](https://www.npmjs.com/package/dynamodb-localhost-ts)
+* [NPM Registry](https://www.npmjs.com/package/dynamodb-localhost-manager)
 
 ## Contributing
 
