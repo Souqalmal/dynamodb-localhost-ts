@@ -1,0 +1,35 @@
+{
+    "name": "dynamodb-localhost-ts",
+    "version": "0.0.6",
+    "engines": {
+        "node": ">=4.0"
+    },
+    "description": "Dynamodb local plugin for local development",
+    "author": "souqalmal.com",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Souqalmal/dynamodb-localhost-ts"
+    },
+    "keywords": [
+	"aws",
+	"dynamodb",
+	"dynamo",
+	"testing",
+	"development",
+	"tool",
+	"local",
+	"localhost",
+	"local-dynamodb",
+	"dynamodb-local",
+	"dynamodb-localhost"
+    ],
+    "main": "index.js",
+    "bin": {},
+    "dependencies": {
+        "mkdirp": "0.5.0",
+        "progress": "1.1.8",
+        "rmdir": "1.2.0",
+        "tar": "2.0.0"
+    }
+}
