@@ -1,5 +1,5 @@
 {
-    "name": "dynamodb-local-manager",
+    "name": "dynamodb-localhost-manager",
     "version": "0.0.2",
     "engines": {
         "node": ">=4.0"
