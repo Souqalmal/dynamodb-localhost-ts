@@ -2,13 +2,13 @@
 
 import * as installer from './dynamodb/installer';
 import * as starter from './dynamodb/starter';
-import * as utils from './dynamodb/utils';
+import {Utils} from './dynamodb/utils';
 import * as config from './dynamodb/config.json';
 
 const dbInstances = {};
 
 const dynamodb = {
-    install: function(callback, path) {
+    install: function(callback: any, path: string) {
         if (path) {
             config.setup.install_path = path;
         }
@@ -17,13 +17,13 @@ const dynamodb = {
             callback();
         });
     },
-    start: function(options) {
+    start: function(options: any) {
         const instance = starter.start(options, config);
         dbInstances[instance.port] = {
             process: instance.proc,
             options: options
         };
-        instance.proc.on('close', function(code) {
+        instance.proc.on('close', function(code: any) {
             if (code !== null && code !== 0) {
                 console.log('DynamoDB Local failed to start with code', code);
             }
@@ -42,7 +42,8 @@ const dynamodb = {
         this.start(options);
         console.log('Successfully restarted dynamodb local on port: ' + port);
     },
-    remove: function(callback) {
+    remove: function(callback: any) {
+	const utils:Utils = new Utils();
         utils.removeDir(config.setup.install_path, function() {
             console.log('Successfully removed dynamodb local!');
             callback();
