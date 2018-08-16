@@ -1,7 +1,6 @@
 'use strict';
 
 import * as tar from 'tar';
-import {Unzip} from 'zlib';
 import * as path from 'path';
 import * as http from 'http';
 import * as fs from 'fs';
@@ -23,9 +22,7 @@ export class Installer {
             if (200 != response.statusCode) {
 		throw new Error('Error getting DynamoDb local latest tar.gz location ' + response.headers.location + ': ' + response.statusCode);
             }
-	    
             response
-		.pipe(Unzip())
 		.pipe(tar.Extract({
                     path: installPath
 		}))
