@@ -1,8 +1,7 @@
 'use strict';
 
 import * as path from 'path';
-import * as rmdir from 'rmdir';
-import * as fs from 'fs';
+import * as fs from 'fs-extra';
 
 
 var absPath = function (p: string) {
@@ -15,7 +14,7 @@ var absPath = function (p: string) {
 
 var removeDir = function (relPath: string, callback) {
     var path = absPath(relPath);
-    rmdir(path, callback);
+    fs.removeSync(path, callback);
 };
 
 var createDir = function (relPath: string) {

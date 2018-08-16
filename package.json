@@ -32,12 +32,13 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
+        "@types/fs-extra": "^5.0.4",
         "@types/node": "^10.7.1",
         "@types/progress": "^2.0.1",
         "@types/tar": "^4.0.0",
+        "fs-extra": "^7.0.0",
         "mkdirp": "0.5.1",
         "progress": "2.0.0",
-        "rmdir": "1.2.0",
         "tar": "4.4.6",
         "ts-loader": "4.4.2",
         "ts-node": "7.0.1",

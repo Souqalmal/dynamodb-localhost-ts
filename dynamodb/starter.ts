@@ -1,15 +1,15 @@
 'use strict';
 
 var spawn = require('child_process').spawn,
-    utils = require('./utils');
+utils = require('./utils');
 
 var starter = {
     start: function (options, config) {
         /* Dynamodb local documentation http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html */
         var additionalArgs = [],
-            port = options.port || config.start.port,
-            db_dir = options.install_path || utils.absPath(config.setup.install_path),
-            jar = config.setup.jar;
+        port = options.port || config.start.port,
+        db_dir = options.install_path || utils.absPath(config.setup.install_path),
+        jar = config.setup.jar;
 
         if (options.dbPath) {
             additionalArgs.push('-dbPath', options.dbPath);
