@@ -11,7 +11,7 @@ var tar = require('tar'),
 var download = function (downloadUrl, installPath, callback) {
     console.log("Started downloading Dynamodb-local. Process may take few minutes.");
     http.get(downloadUrl, function (response) {
-            var len = parseInt(response.headers['content-length'], 10),
+        var len = parseInt(response.headers['content-length'], 10),
             bar = new ProgressBar('Downloading dynamodb-local [:bar] :percent :etas', {
                 complete: '=',
                 incomplete: ' ',
@@ -19,25 +19,25 @@ var download = function (downloadUrl, installPath, callback) {
                 total: len
             });
 
-            if (200 != response.statusCode) {
-                throw new Error('Error getting DynamoDb local latest tar.gz location ' + response.headers.location + ': ' + response.statusCode);
-            }
+        if (200 != response.statusCode) {
+            throw new Error('Error getting DynamoDb local latest tar.gz location ' + response.headers.location + ': ' + response.statusCode);
+        }
 
-            response
-                .pipe(zlib.Unzip())
-                .pipe(tar.Extract({
-                    path: installPath
-                }))
-                .on('data', function (chunk) {
-                    bar.tick(chunk.length);
-                })
-                .on('end', function () {
-                    callback("\n Installation complete!");
-                })
-                .on('error', function (err) {
-                    throw new Error("Error in downloading Dynamodb local " + err);
-                });
+        response
+            .pipe(zlib.Unzip())
+            .pipe(tar.Extract({
+                path: installPath
+            }))
+            .on('data', function (chunk) {
+                bar.tick(chunk.length);
             })
+            .on('end', function () {
+                callback("\n Installation complete!");
+            })
+            .on('error', function (err) {
+                throw new Error("Error in downloading Dynamodb local " + err);
+            });
+    })
         .on('error', function (err) {
             throw new Error("Error in downloading Dynamodb local " + err);
         });

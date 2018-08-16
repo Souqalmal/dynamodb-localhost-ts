@@ -5,9 +5,9 @@ import * as starter from './dynamodb/starter';
 import * as utils from './dynamodb/utils';
 import * as config from './dynamodb/config.json';
 
-var dbInstances = {};
+const dbInstances = {};
 
-var dynamodb = {
+const dynamodb = {
     install: function(callback, path) {
         if (path) {
             config.setup.install_path = path;
@@ -18,7 +18,7 @@ var dynamodb = {
         });
     },
     start: function(options) {
-        var instance = starter.start(options, config);
+        const instance = starter.start(options, config);
         dbInstances[instance.port] = {
             process: instance.proc,
             options: options
@@ -37,16 +37,16 @@ var dynamodb = {
         }
     },
     restart: function(port) {
-        var options = dbInstances[port].options;
+        const options = dbInstances[port].options;
         this.stop(port);
         this.start(options);
-        console.log("Successfully restarted dynamodb local on port: " + port);
+        console.log('Successfully restarted dynamodb local on port: ' + port);
     },
     remove: function(callback) {
         utils.removeDir(config.setup.install_path, function() {
-            console.log("Successfully removed dynamodb local!");
+            console.log('Successfully removed dynamodb local!');
             callback();
         });
     }
 };
-module.exports = dynamodb;
+export = { dynamodb };
