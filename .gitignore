@@ -84,3 +84,4 @@ typings/
 *.js.map
 ./lib/*.js*
 ./lib/**/*.js*
+./dynamodb/*.js*

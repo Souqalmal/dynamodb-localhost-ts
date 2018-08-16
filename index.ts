@@ -12,7 +12,7 @@ const dynamodb = {
         if (path) {
             config.setup.install_path = path;
         }
-        installer.install(config, function(msg) {
+        installer.install(config, function(msg: string) {
             console.log(msg);
             callback();
         });

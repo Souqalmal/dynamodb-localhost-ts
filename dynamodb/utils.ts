@@ -1,8 +1,9 @@
 'use strict';
 
-var path = require('path'),
-    rmdir = require('rmdir'),
-    fs = require('fs');
+import * as path from 'path';
+import * as rmdir from 'rmdir';
+import * as fs from 'fs';
+
 
 var absPath = function (p: string) {
   if (path.isAbsolute(p)) {
