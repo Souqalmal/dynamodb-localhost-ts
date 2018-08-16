@@ -12,24 +12,28 @@
         "url": "https://github.com/Souqalmal/dynamodb-localhost-ts"
     },
     "keywords": [
-	"aws",
-	"dynamodb",
-	"dynamo",
-	"testing",
-	"development",
-	"tool",
-	"local",
-	"localhost",
-	"local-dynamodb",
-	"dynamodb-local",
-	"dynamodb-localhost"
+        "aws",
+        "dynamodb",
+        "dynamo",
+        "testing",
+        "development",
+        "tool",
+        "local",
+        "localhost",
+        "local-dynamodb",
+        "dynamodb-local",
+        "dynamodb-localhost"
     ],
     "main": "index.js",
     "bin": {},
     "dependencies": {
-        "mkdirp": "0.5.0",
-        "progress": "1.1.8",
+        "mkdirp": "0.5.1",
+        "progress": "2.0.0",
         "rmdir": "1.2.0",
-        "tar": "2.0.0"
+        "tar": "4.4.6",
+        "ts-loader": "4.4.2",
+        "ts-node": "7.0.1",
+        "tslint": "5.11.0",
+        "typescript": "3.0.1"
     }
 }
