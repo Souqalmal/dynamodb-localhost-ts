@@ -5,7 +5,7 @@ import {Unzip} from 'zlib';
 import * as path from 'path';
 import * as http from 'http';
 import * as fs from 'fs';
-import * as ProgressBar from 'progress';
+import ProgressBar from 'progress';
 import {Utils} from './utils';
 
 export class Installer {
@@ -13,7 +13,7 @@ export class Installer {
 	console.log("Started downloading Dynamodb-local. Process may take few minutes.");
 	http.get(downloadUrl, function (response) {
             let len = parseInt(response.headers['content-length'] || '0', 10);
-            let bar = new ProgressBar('Downloading dynamodb-local [:bar] :percent :etas', {
+            let bar:ProgressBar = new ProgressBar('Downloading dynamodb-local [:bar] :percent :etas', {
                 complete: '=',
                 incomplete: ' ',
                 width: 40,

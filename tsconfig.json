@@ -1,6 +1,8 @@
 {
     "compilerOptions": {
 	"module": "commonjs",
+	"resolveJsonModule": true,
+	"esModuleInterop": true,
 	"target": "es5",
 	"outDir": "./dist",
 	"strict": true,
@@ -17,6 +19,7 @@
 	"suppressImplicitAnyIndexErrors": true,
 	"forceConsistentCasingInFileNames": true
     },
+    "include": ["dynamodb"],
     "exclude": [ "node_modules" ],
     "types": [ "typePatches" ]
 }

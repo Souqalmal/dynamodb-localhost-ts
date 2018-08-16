@@ -3,7 +3,7 @@
 import {Installer} from './dynamodb/installer';
 import {Starter} from './dynamodb/starter';
 import {Utils} from './dynamodb/utils';
-import * as config from './dynamodb/config.json';
+import config from './dynamodb/config.json';
 
 export class DynamodbManager {
 
