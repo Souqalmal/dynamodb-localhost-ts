@@ -5,9 +5,9 @@ import {Utils} from './utils';
 
 export class Starter {
     public start(options: any, config: any):any {
+	const utils:Utils = new Utils();
         var additionalArgs = [],
         port = options.port || config.start.port,
-	const utils:Utils = new Utils();
         db_dir = options.install_path || utils.absPath(config.setup.install_path),
         jar = config.setup.jar;
 
@@ -45,7 +45,7 @@ export class Starter {
 	    throw new Error('Unable to start DynamoDB Local process!');
         }
 
-        child.on('error', function (code) {
+        child.on('error', function (code:any) {
 	    throw new Error(code);
         });
 

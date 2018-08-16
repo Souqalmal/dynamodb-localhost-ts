@@ -29,17 +29,17 @@ export class Installer {
 		.pipe(tar.Extract({
                     path: installPath
 		}))
-		.on('data', function (chunk) {
+		.on('data', function (chunk:any) {
                     bar.tick(chunk.length);
 		})
 		.on('end', function () {
                     callback("\n Installation complete!");
 		})
-		.on('error', function (err) {
+		.on('error', function (err:Error) {
                     throw new Error("Error in downloading Dynamodb local " + err);
 		});
 	})
-            .on('error', function (err) {
+            .on('error', function (err:Error) {
 		throw new Error("Error in downloading Dynamodb local " + err);
             });
     };
@@ -55,7 +55,7 @@ export class Installer {
 		callback("Dynamodb is already installed on path!");
             } else {
 		utils.createDir(config.setup.install_path);
-		download(download_url, install_path, callback);
+		this.download(download_url, install_path, callback);
             }
 	} catch (e) {}
     };

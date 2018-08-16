@@ -55,9 +55,6 @@ export class DynamodbManager {
     
     public remove(callback: any):void {
 	const utils:Utils = new Utils();
-        utils.removeDir(config.setup.install_path, function() {
-            console.log('Successfully removed dynamodb local!');
-            callback();
-        });
+        utils.removeDir(config.setup.install_path);
     }
 }
