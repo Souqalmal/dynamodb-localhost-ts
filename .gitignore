@@ -86,3 +86,5 @@ typings/
 ./lib/**/*.js*
 ./dynamodb/*.js*
 ./dynamodb/*.js
+./test/*.js
+./test/.dynamo

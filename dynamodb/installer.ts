@@ -27,7 +27,7 @@ export class Installer {
             }
             response
 		.pipe(tar.x({
-                    path: config.install_path
+		    C: config.install_path // alias for cwd:'some-dir', also ok
 		}))
 		.on('data', function (chunk:any) {
                     bar.tick(chunk.length);
