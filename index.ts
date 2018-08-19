@@ -23,20 +23,22 @@ export class DynamodbLocalManager {
         });
     }
 
-    public start(options: any):void {
+    public start(optional_config?:Config):void {
 	const starter:Starter = new Starter();
-        const instance = starter.start(options, this.config);
+	let starting_config = this.config;
+	if (optional_config)
+	    starting_config = optional_config;
+        const instance = starter.start(starting_config);
         this.dbInstances[instance.port] = {
             process: instance.proc,
-	    options: options,
-            config: this.config
+            config: starting_config
         };
         instance.proc.on('close', function(code: any) {
             if (code !== null && code !== 0) {
                 console.log('DynamoDB Local failed to start with code', code);
             }
         });
-        console.log('Dynamodb Local Started, Visit: http://localhost:' + (options.port || this.config.port) + '/shell');
+        console.log('Dynamodb Local Started, Visit: http://localhost:' + (this.config.port) + '/shell');
     }
 
     public stop(port: number):void {
@@ -47,9 +49,9 @@ export class DynamodbLocalManager {
     }
 
     public restart(port: number):void {
-        const options = this.dbInstances[port].options;
+        const restart_config = this.dbInstances[port].config;
         this.stop(port);
-        this.start(options);
+        this.start(restart_config);
         console.log('Successfully restarted dynamodb local on port: ' + port);
     }
 

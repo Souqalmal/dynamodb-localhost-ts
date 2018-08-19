@@ -5,31 +5,31 @@ import {Utils} from './utils';
 import {Config} from './config';
 
 export class Starter {
-    public start(options: any, config: Config):any {
+    public start(config: Config):any {
 	const utils:Utils = new Utils();
         var additionalArgs = [],
-        port = options.port || config.port,
-        db_dir = options.install_path || utils.absPath(config.install_path),
+        port = config.port,
+        db_dir = utils.absPath(config.install_path),
         jar = config.jar;
 
-        if (options.dbPath) {
-	    additionalArgs.push('-dbPath', options.dbPath);
-        } else {
+        if (config.in_memory == true) {
 	    additionalArgs.push('-inMemory');
+        } else {
+	    additionalArgs.push('-dbPath', config.db_path);
         }
-        if (options.sharedDb) {
+        if (config.shared_db == true) {
 	    additionalArgs.push('-sharedDb');
         }
-        if (options.cors) {
-	    additionalArgs.push('-cors', options.cors);
+        if (config.cors != "") {
+	    additionalArgs.push('-cors', config.cors);
         }
-        if (options.delayTransientStatuses) {
+        if (config.delay_transient_statuses == true) {
 	    additionalArgs.push('-delayTransientStatuses');
         }
-        if (options.optimizeDbBeforeStartup) {
+        if (config.optimize_db_before_startup == true) {
 	    additionalArgs.push('-optimizeDbBeforeStartup');
         }
-        if (options.help) {
+        if (config.help == true) {
 	    additionalArgs.push('-help');
         }
 
