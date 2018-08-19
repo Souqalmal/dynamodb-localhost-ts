@@ -85,3 +85,4 @@ typings/
 ./lib/*.js*
 ./lib/**/*.js*
 ./dynamodb/*.js*
+./dynamodb/*.js
