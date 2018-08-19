@@ -53,7 +53,7 @@ export class DynamodbLocalManager {
         console.log('Successfully restarted dynamodb local on port: ' + port);
     }
 
-    public remove(callback: any):void {
+    public remove():void {
 	const utils:Utils = new Utils();
         utils.removeDir(this.config.install_path);
     }
