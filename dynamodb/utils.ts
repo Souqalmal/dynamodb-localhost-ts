@@ -13,8 +13,7 @@ export class Utils {
     };
 
     public removeDir(relPath: string):void {
-	var path = this.absPath(relPath);
-	fs.removeSync(path);
+	fs.removeSync(this.absPath(relPath));
     };
 
     public createDir(relPath: string):void {
