@@ -1,1 +1,5 @@
-lib/
+dynamodb/
+test/
+index.ts
+index.js
+.nvmrc
