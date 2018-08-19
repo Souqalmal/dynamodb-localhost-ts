@@ -28,6 +28,7 @@ export class DynamodbLocalManager {
 	let starting_config = this.config;
 	if (optional_config)
 	    starting_config = optional_config;
+	console.log("Configuration used for this instance is:" + starting_config);
         const instance = starter.start(starting_config);
         this.dbInstances[instance.port] = {
             process: instance.proc,
