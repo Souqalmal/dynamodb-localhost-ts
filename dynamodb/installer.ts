@@ -6,11 +6,14 @@ import * as http from 'http';
 import * as fs from 'fs';
 import ProgressBar from 'progress';
 import {Utils} from './utils';
+import {Config} from './config';
 
 export class Installer {
-    public download(downloadUrl: string, installPath: string, callback: any):void {
+    public download(config:Config, callback:any):void {
 	console.log("Started downloading Dynamodb-local. Process may take few minutes.");
-	http.get(downloadUrl, function (response) {
+	console.log("Installation path is: " + config.install_path + ".");
+
+	http.get(config.download_url, function (response) {
             let len = parseInt(response.headers['content-length'] || '0', 10);
             let bar:ProgressBar = new ProgressBar('Downloading dynamodb-local [:bar] :percent :etas', {
                 complete: '=',
@@ -23,8 +26,8 @@ export class Installer {
 		throw new Error('Error getting DynamoDb local latest tar.gz location ' + response.headers.location + ': ' + response.statusCode);
             }
             response
-		.pipe(tar.Extract({
-                    path: installPath
+		.pipe(tar.x({
+                    path: config.install_path
 		}))
 		.on('data', function (chunk:any) {
                     bar.tick(chunk.length);
@@ -41,18 +44,15 @@ export class Installer {
             });
     };
 
-    public install(config:any, callback:any):void {
+    public install(config:Config, callback:any):void {
 	const utils:Utils = new Utils();
-	var install_path = utils.absPath(config.setup.install_path),
-        jar = config.setup.jar,
-        download_url = config.setup.download_url;
-
+	config.install_path = utils.absPath(config.install_path);
 	try {
-            if (fs.existsSync(path.join(install_path, jar))) {
+            if (fs.existsSync(path.join(config.install_path, config.jar))) {
 		callback("Dynamodb is already installed on path!");
             } else {
-		utils.createDir(config.setup.install_path);
-		this.download(download_url, install_path, callback);
+		utils.createDir(config.install_path);
+		this.download(config, callback);
             }
 	} catch (e) {}
     };

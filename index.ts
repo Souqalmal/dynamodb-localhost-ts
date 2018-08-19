@@ -3,58 +3,58 @@
 import {Installer} from './dynamodb/installer';
 import {Starter} from './dynamodb/starter';
 import {Utils} from './dynamodb/utils';
-import config from './dynamodb/config.json';
+import {Config} from './dynamodb/config';
 
 export class DynamodbLocalManager {
 
     private dbInstances:any;
-    
+    config:Config;
+
     constructor() {
 	this.dbInstances = {};
+	this.config = new Config();
     }
-    
-    public install(callback: any, path: string):void {
-        if (path) {
-            config.setup.install_path = path;
-        }
+
+    public install(callback: any):void {
 	const installer:Installer = new Installer();
-        installer.install(config, function(msg: string) {
+        installer.install(this.config, function(msg: string) {
             console.log(msg);
             callback();
         });
     }
-    
+
     public start(options: any):void {
 	const starter:Starter = new Starter();
-        const instance = starter.start(options, config);
+        const instance = starter.start(options, this.config);
         this.dbInstances[instance.port] = {
             process: instance.proc,
-            options: options
+	    options: options,
+            config: this.config
         };
         instance.proc.on('close', function(code: any) {
             if (code !== null && code !== 0) {
                 console.log('DynamoDB Local failed to start with code', code);
             }
         });
-        console.log('Dynamodb Local Started, Visit: http://localhost:' + (options.port || config.start.port) + '/shell');
+        console.log('Dynamodb Local Started, Visit: http://localhost:' + (options.port || this.config.port) + '/shell');
     }
-    
+
     public stop(port: number):void {
         if (this.dbInstances[port]) {
             this.dbInstances[port].process.kill('SIGKILL');
             delete this.dbInstances[port];
         }
     }
-    
+
     public restart(port: number):void {
         const options = this.dbInstances[port].options;
         this.stop(port);
         this.start(options);
         console.log('Successfully restarted dynamodb local on port: ' + port);
     }
-    
+
     public remove(callback: any):void {
 	const utils:Utils = new Utils();
-        utils.removeDir(config.setup.install_path);
+        utils.removeDir(this.config.install_path);
     }
 }

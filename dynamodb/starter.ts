@@ -2,14 +2,15 @@
 
 var spawn = require('child_process').spawn;
 import {Utils} from './utils';
+import {Config} from './config';
 
 export class Starter {
-    public start(options: any, config: any):any {
+    public start(options: any, config: Config):any {
 	const utils:Utils = new Utils();
         var additionalArgs = [],
-        port = options.port || config.start.port,
-        db_dir = options.install_path || utils.absPath(config.setup.install_path),
-        jar = config.setup.jar;
+        port = options.port || config.port,
+        db_dir = options.install_path || utils.absPath(config.install_path),
+        jar = config.jar;
 
         if (options.dbPath) {
 	    additionalArgs.push('-dbPath', options.dbPath);
